@@ -1,3 +1,4 @@
 class AppRoute {
   static final String homeScreenRoute = "homeScreen";
+  static final String introductionScreenRoute = "introductionScreen";
 }
