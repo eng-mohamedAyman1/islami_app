@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/ul/home_screen.dart';
 import 'package:islami_app/util/app_route.dart';
+import 'package:islami_app/util/app_theme.dart';
 import 'package:islami_app/util/launch_service.dart';
 
 import 'ul/introduction_screen.dart';
@@ -18,6 +19,8 @@ bool isFirstLaunch;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.dark,
+      theme:  AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       routes: {
         AppRoute.homeScreenRoute:(context) => HomeScreen(),
