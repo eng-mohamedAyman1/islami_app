@@ -5,7 +5,7 @@ import 'package:islami_app/util/app_theme.dart';
 import 'package:islami_app/util/launch_service.dart';
 
 import 'ul/introduction_screen.dart';
-
+import 'ul/tabBodyHomeScreen/tabQuran/sara_screen.dart';
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   final isFirst = await AppLaunchService.isFirstLaunch();
@@ -25,10 +25,12 @@ bool isFirstLaunch;
       routes: {
         AppRoute.homeScreenRoute:(context) => HomeScreen(),
         AppRoute.introductionScreenRoute:(context) => IntroductionScreens(),
+        AppRoute.SaraScreenRoute:(context) => SaraScreen(),
       },
       initialRoute:isFirstLaunch
           ? AppRoute.introductionScreenRoute
           : AppRoute.homeScreenRoute,
+      //   initialRoute:AppRoute.homeScreenRoute,
     );
   }
 }
