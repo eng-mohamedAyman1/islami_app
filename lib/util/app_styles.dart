@@ -7,6 +7,10 @@ abstract class AppStyles {
     fontSize: 16,
     color: AppColors.gold,
     fontWeight: FontWeight.w700,
+  ); static final TextStyle base24BoldGold = TextStyle(
+    fontSize: 24,
+    color: AppColors.gold,
+    fontWeight: FontWeight.w700,
   );
   static final TextStyle base16BoldCreamyYellow = TextStyle(
     fontSize: 16,
@@ -20,6 +24,14 @@ abstract class AppStyles {
   );
   static final TextStyle bold20White = TextStyle(
     fontSize: 20,
+    color: AppColors.white,
+    fontWeight: .w700,
+  );static final TextStyle bold14White = TextStyle(
+    fontSize: 14,
+    color: AppColors.white,
+    fontWeight: .w700,
+  );static final TextStyle bold16White = TextStyle(
+    fontSize: 16,
     color: AppColors.white,
     fontWeight: .w700,
   );
