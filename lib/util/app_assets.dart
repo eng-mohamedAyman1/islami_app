@@ -12,6 +12,7 @@ abstract final class AppImages {
   static const String bgMosqueHeader = 'assets/images/bg_mosque.png';
 
   static const String bgTime = 'assets/images/bg_time.png';
+  static const String suraImage = 'assets/images/Sura Number.png';
   static const String bgRadio = 'assets/images/bg_radio.png';
   static const String bgAzkar = 'assets/images/bg_sebha.png';
   static const String bgQuran = 'assets/images/bg_home.png';
