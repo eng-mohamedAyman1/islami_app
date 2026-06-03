@@ -5,7 +5,7 @@ import 'package:islami_app/util/app_colors.dart';
 import 'package:islami_app/util/context_extension.dart';
 
 import 'tabBodyHomeScreen/tabAzkar.dart';
-import 'tabBodyHomeScreen/tabHadith.dart';
+import 'tabBodyHomeScreen/tabHadith/tabHadith.dart';
 import 'tabBodyHomeScreen/tabQuran/tabQuran.dart';
 import 'tabBodyHomeScreen/tabRadio.dart';
 import 'tabBodyHomeScreen/tabTime.dart' show Tabtime;
