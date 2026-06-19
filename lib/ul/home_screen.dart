@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             body: Column(
               children: [
-                 Image.asset("assets/images/Group 42.png",height:context.height*.18 ,),
+                 Image.asset("assets/images/Group 42.png",height:context.height*.15 ,fit: BoxFit.fill,),
                  Expanded(child: bodyScreen[currentIndex])
               ],
             ),
