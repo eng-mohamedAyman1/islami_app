@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:islami_app/provider/most_recently_provider.dart';
 import 'package:islami_app/ul/tabBodyHomeScreen/tabQuran/quranDate.dart';
 import 'package:islami_app/ul/tabBodyHomeScreen/tabQuran/widgets.dart';
 import 'package:islami_app/util/app_colors.dart';
-import 'package:islami_app/util/app_route.dart';
 import 'package:islami_app/util/app_styles.dart';
 import 'package:islami_app/util/context_extension.dart';
+import 'package:islami_app/util/launch_service.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/app_assets.dart';
 
@@ -18,9 +20,22 @@ class Tabquran extends StatefulWidget {
 
 class _TabquranState extends State<Tabquran> {
   List<int> suraFilter = List.generate(114, (index) => index);
+late MostRecentlyProvider mostRecentlyProvider;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        mostRecentlyProvider.getMostRecentlyList();
+      },
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
+     mostRecentlyProvider=Provider.of<MostRecentlyProvider>(context);
     return Padding(
       padding: EdgeInsets.all(context.width * 0.04),
       child: Column(
@@ -68,66 +83,70 @@ class _TabquranState extends State<Tabquran> {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Most Recently ', style: AppStyles.bold20White),
-              SizedBox(
-                height: context.height * .18,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: context.width * .6,
-                      decoration: BoxDecoration(
-                        color: AppColors.gold,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    Qurandate.getAllSurahs[index].englishName,
-                                    style: AppStyles.bold24DarkGray,
-                                  ),
-                                  SizedBox(width: context.width * 0.02),
-                                  Text(
-                                    Qurandate.getAllSurahs[index].arabicName,
-                                    style: AppStyles.bold24DarkGray,
-                                  ),
-                                  SizedBox(width: context.width * 0.02),
-
-                                  Text(
-                                    " ${Qurandate.getAllSurahs[index].ayahCount}  Verses  ",
-                                    style: AppStyles.label,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.imgMostRecent,
-                                width: context.width * .2,
-                                height: context.height * .15,
-                              ),
-                            ),
-                          ],
+          Visibility(
+            visible:mostRecentlyProvider.mostRecently.isNotEmpty ,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Most Recently ', style: AppStyles.bold20White),
+                SizedBox(
+                  height: context.height * .18,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: context.width * .6,
+                        decoration: BoxDecoration(
+                          color: AppColors.gold,
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) =>
-                      SizedBox(width: context.width * 0.02),
-                  itemCount: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      Qurandate.getAllSurahs[mostRecentlyProvider.mostRecently[index]].englishName,
+                                      style: AppStyles.bold24DarkGray,
+                                    ),
+                                    SizedBox(width: context.width * 0.02),
+                                    Text(
+                                      Qurandate.getAllSurahs[mostRecentlyProvider.mostRecently[index]].arabicName,
+                                      style: AppStyles.bold24DarkGray,
+                                    ),
+                                    SizedBox(width: context.width * 0.02),
+
+                                    Text(
+                                      " ${Qurandate.getAllSurahs[mostRecentlyProvider.mostRecently[index]].ayahCount}  Verses  ",
+                                      style: AppStyles.label,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Image.asset(
+                                  fit: BoxFit.fill,
+                                  AppImages.imgMostRecent,
+                                  width: context.width * .2,
+                                  height: context.height * .15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        SizedBox(width: context.width * 0.02),
+                    itemCount: mostRecentlyProvider.mostRecently.length,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Text('Suras List ', style: AppStyles.bold20White),
           Expanded(
