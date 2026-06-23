@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/provider/most_recently_provider.dart';
 import 'package:islami_app/util/app_assets.dart';
 import 'package:islami_app/util/app_styles.dart';
 import 'package:islami_app/util/context_extension.dart';
+import 'package:provider/provider.dart';
 
 import 'quranDate.dart';
 import 'sara_data_on_bottom.dart';
@@ -14,9 +16,11 @@ class SaraScreen extends StatefulWidget {
 
 class _SaraScreenState extends State<SaraScreen> {
   bool selectButton = true;
+  late MostRecentlyProvider mostRecentlyProvider;
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context)?.settings.arguments as int;
+    mostRecentlyProvider=Provider.of<MostRecentlyProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('${Qurandate.getAllSurahs[index].englishName}'),
@@ -111,5 +115,11 @@ class _SaraScreenState extends State<SaraScreen> {
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    mostRecentlyProvider.getMostRecentlyList();
   }
 }
