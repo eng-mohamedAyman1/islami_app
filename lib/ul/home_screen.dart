@@ -5,7 +5,7 @@ import 'package:islami_app/util/app_colors.dart';
 import 'package:islami_app/util/context_extension.dart';
 
 import 'tabBodyHomeScreen/tabAzkar.dart';
-import 'tabBodyHomeScreen/tabHadith.dart';
+import 'tabBodyHomeScreen/tabHadith/tabHadith.dart';
 import 'tabBodyHomeScreen/tabQuran/tabQuran.dart';
 import 'tabBodyHomeScreen/tabRadio.dart';
 import 'tabBodyHomeScreen/tabTime.dart' show Tabtime;
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             body: Column(
               children: [
-                 Image.asset("assets/images/Group 42.png",height:context.height*.18 ,),
+                 Image.asset("assets/images/Group 42.png",height:context.height*.15 ,fit: BoxFit.fill,),
                  Expanded(child: bodyScreen[currentIndex])
               ],
             ),

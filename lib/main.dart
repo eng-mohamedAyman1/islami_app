@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/provider/most_recently_provider.dart';
 import 'package:islami_app/ul/home_screen.dart';
+import 'package:islami_app/ul/tabBodyHomeScreen/tabHadith/hadith_detail.dart';
 import 'package:islami_app/util/app_route.dart';
 import 'package:islami_app/util/app_theme.dart';
 import 'package:islami_app/util/launch_service.dart';
+import 'package:provider/provider.dart';
 
 import 'ul/introduction_screen.dart';
 import 'ul/tabBodyHomeScreen/tabQuran/sara_screen.dart';
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   final isFirst = await AppLaunchService.isFirstLaunch();
-  runApp( MyApp(isFirstLaunch: isFirst,));
+  runApp( ChangeNotifierProvider(
+    create: (context) => MostRecentlyProvider(),
+      child: MyApp(isFirstLaunch: isFirst,)));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,6 +31,7 @@ bool isFirstLaunch;
         AppRoute.homeScreenRoute:(context) => HomeScreen(),
         AppRoute.introductionScreenRoute:(context) => IntroductionScreens(),
         AppRoute.SaraScreenRoute:(context) => SaraScreen(),
+        AppRoute.hadithScreenRoute:(context) => HadithDetail(),
       },
       initialRoute:isFirstLaunch
           ? AppRoute.introductionScreenRoute

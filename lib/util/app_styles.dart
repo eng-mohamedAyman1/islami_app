@@ -18,7 +18,7 @@ abstract class AppStyles {
     fontWeight: FontWeight.w700,
   );
   static final TextStyle bold24DarkGray = TextStyle(
-    fontSize: 24,
+    fontSize: 20,
     color: AppColors.darkGray,
     fontWeight: FontWeight.w700,
   );
